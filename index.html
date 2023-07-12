@@ -1,0 +1,24 @@
+<!-- Generated from aic.g4 by antlr-blockly -->
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AicEventEditor Ver1.0</title>
+    <script src="./blockly_compressed.js"></script>
+    <script src="./blocks_compressed.js"></script>
+    <script src="./javascript_compressed.js"></script>
+    <script src="./zh-hans.js"></script>
+</head>
+
+<body>
+    <p>
+        <button onclick="copyjson()">复制当前json</button>
+        <button onclick="rebuild()">由json还原为积木</button>
+        <button onclick="compile()">编译！</button>
+    </p>
+    <div id="blocklyDiv" style="height: 630px; width: 1120px;"></div>
+    <textArea id="codeArea" cols="150" readonly="readonly"></textArea>
+    <script src="aic.js"></script>
+</body>
+
+</html>

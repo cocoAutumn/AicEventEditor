@@ -1,0 +1,237 @@
+// キューシートの名前を登録する。
+
+%ADX_INIT nelcri.acf DspBusSetting_1
+
+
+
+/* ___ 1 ___ */
+// ゲームのベーシックデータ
+ui
+for_editor
+//debug
+talk
+%LOAD_AWB
+item
+
+/* ___ saveload ___ */
+%LOAD_AWB
+saveload
+
+/* ___ m2d ___ */
+m2d_foot
+m2d_puzzle
+magic_basic
+mg_fireball
+mg_dropbomb
+mg_whitearrow
+mg_thunderbolt
+mg_pr_burst
+enemy_basic
+pr_basic
+%LOAD_AWB
+m2d
+ev_basic
+/* ___ ev_primula ___ */
+ev_primula
+
+/* ___ mountain ___ */
+mountain
+
+/* ___ ev_msg_noise ___ */
+ev_msg_noise
+/* ___ ev_trm ___ */
+ev_trm
+
+/* ___ mg_powerbomb ___ */
+mg_powerbomb
+
+/* ___ fatal ___ */
+fatal
+
+/* ___ m2darea_insect ___ */
+m2darea_insect
+
+/* ___ m2darea_thunder ___ */
+m2darea_thunder
+
+/* ___ m2darea_river ___ */
+m2darea_river
+
+/* ___ m2d_puzzle_timer ___ */
+m2d_puzzle_timer
+
+/* ___ m2d_carrier_presser ___ */
+m2d_carrier_presser
+
+/* ___ enemy_slime ___ */
+enemy_slime
+
+/* ___ enemy_mush ___ */
+enemy_mush
+/* ___ enemy_puppy ___ */
+enemy_puppy
+/* ___ enemy_golem ___ */
+enemy_golem
+
+/* ___ enemy_snake ___ */
+enemy_snake
+
+/* ___ enemy_sponge ___ */
+enemy_sponge
+/* ___ enemy_uni ___ */
+enemy_uni
+/* ___ enemy_fox ___ */
+enemy_fox
+
+/* ___ enemy_gecko ___ */
+enemy_gecko
+
+/* ___ enemy_frog ___ */
+enemy_frog
+
+/* ___ enemy_nusi ___ */
+%LOAD_AWB
+enemy_nusi
+/* ___ enemy_boss ___ */
+enemy_boss
+
+
+/* ___ m2d_house ___ */
+m2d_house
+
+/* ___ weather_wind ___ */
+weather_wind
+
+/* ___ weather_thunder ___ */
+weather_thunder
+
+
+/* ___ vo_noel ___ */
+%HEADER Voice.Noel.
+vo_noel
+
+/* ___ vo_ixia ___ */
+%HEADER Voice.Ixia.
+vo_ixia
+
+/* ___ BGM_title ___ */
+%LOAD_AWB
+BGM_title
+
+/* ___ BGM_cornehl ___ */
+%LOAD_AWB
+BGM_cornehl
+
+/* ___ BGM_cornehl_night ___ */
+%LOAD_AWB
+BGM_cornehl_night
+
+/* ___ BGM_forest ___ */
+%LOAD_AWB
+BGM_forest
+
+/* ___ BGM_degree45 ___ */
+%LOAD_AWB
+BGM_degree45
+
+/* ___ BGM_underwater ___ */
+%LOAD_AWB
+BGM_underwater
+/* ___ BGM_wind ___ */
+%LOAD_AWB
+BGM_wind
+/* ___ BGM_herghost ___ */
+%LOAD_AWB
+BGM_herghost
+
+/* ___ BGM_suzumusi ___ */
+%LOAD_AWB
+BGM_suzumusi
+
+/* ___ BGM_shopping ___ */
+%LOAD_AWB
+BGM_shopping
+
+/* ___ BGM_ixia ___ */
+%LOAD_AWB
+BGM_ixia
+/* ___ BGM_ixia_battle ___ */
+%LOAD_AWB
+BGM_ixia_battle
+/* ___ BGM_ixia_night ___ */
+%LOAD_AWB
+BGM_ixia_night
+/* ___ BGM_popsup ___ */
+%LOAD_AWB
+BGM_popsup
+/* ___ BGM_tilde ___ */
+%LOAD_AWB
+BGM_tilde
+/* ___ BGM_town4 ___ */
+%LOAD_AWB
+BGM_town4
+/* ___ BGM_tuuzyou ___ */
+%LOAD_AWB
+BGM_tuuzyou
+/* ___ BGM_valentine ___ */
+%LOAD_AWB
+BGM_valentine
+/* ___ BGM_light ___ */
+%LOAD_AWB
+BGM_light
+/* ___ BGM_primula ___ */
+%LOAD_AWB
+BGM_primula
+/* ___ BGM_luminous_particle ___ */
+%LOAD_AWB
+BGM_luminous_particle
+/* ___ BGM_inn ___ */
+%LOAD_AWB
+BGM_inn
+/* ___ BGM_sohunosyosai ___ */
+%LOAD_AWB
+BGM_sohunosyosai
+
+/* ___ BGM_fatal_huon ___ */
+%LOAD_AWB
+BGM_fatal_huon
+
+/* ___ BGM_yocho ___ */
+%LOAD_AWB
+BGM_yocho
+
+/* ___ BGM_madhatter ___ */
+%LOAD_AWB
+BGM_madhatter
+
+/* ___ BGM_hunter_minarai ___ */
+%LOAD_AWB
+BGM_hunter_minarai
+
+
+/* ___ BGM_killing ___ */
+%LOAD_AWB
+BGM_killing
+
+/* ___ BGM_battle_nusi ___ */
+%LOAD_AWB
+BGM_battle_nusi
+
+/* ___ BGM_morinokioku ___ */
+%LOAD_AWB
+BGM_morinokioku
+
+/* ___ BGM_c_sign ___ */
+%LOAD_AWB
+BGM_c_sign
+/* ___ BGM_bukiyou_na_hutari ___ */
+%LOAD_AWB
+BGM_bukiyou_na_hutari
+
+/* ___ BGM_tokimeki ___ */
+%LOAD_AWB
+BGM_tokimeki
+
+/* ___ BGM_yatto_deaeta ___ */
+%LOAD_AWB
+BGM_yatto_deaeta

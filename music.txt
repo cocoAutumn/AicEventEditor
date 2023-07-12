@@ -1,0 +1,267 @@
+
+/* ___ BGM_title ___ */ 
+
+author  	 An Fillnote
+title 	タイトル
+
+default_que grazia
+
+bpm 165
+
+/* ___ BGM_forest ___ */ 
+author  	 ginkiha
+title 	紡ぐ者の森
+bpm 129
+
+default_que Normal
+battle_que Battle
+
+// normal -> battle 
+// 区切りは半角スペースまたはタブで行う。
+// 第2引数: normal 側の対象ブロック番号をA-Zで記載します。
+// 第3引数: battle 側遷移先ブロック番号をA-Zで記載します。
+// 第4引数: normal 側のフェードアウトにかかる時間をミリ秒で指定。 0で即時停止
+// 第5引数: battle 側のフェードアウトにかかる時間をミリ秒で指定。 0で即時スタート 
+// ※「特定ブロックの開始位置が全体の何ミリ秒位置にあたるか」がどうも
+// プログラムから取得できないっぽいので、
+// 遷移にあたっては normal 側も「現在の直後のブロック」に映った上で
+// battle 側のブロックの開始位置を求めます。 
+// ( normal が A を再生中なら normal-B の遷移先を参照→K に飛ぶ )
+default_transition A|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R  A  8000 3000 
+default_transition B|C|S|T  K 8000 3000 
+
+// battle -> normal
+battle_transition A|F|G|H|I     A    4000 1000
+battle_transition B|C  U     7442 1000
+battle_transition D|E   J     4000 1000
+
+/* ___ BGM_ixia_battle ___ */ 
+author  	 ginkiha
+title 	イクシャ・ポリスタキア（戦闘）
+bpm 175
+
+default_que Ixia_Normal
+battle_que Ixia_Battle
+default_transition A|B|C  A  0 0 
+battle_transition A|B|C   A     0 0
+
+/* ___ BGM_cornehl ___ */ 
+
+author  	 An Fillnote
+title 	魔女の雑貨店
+default_que cornehl
+
+// ブロック遷移情報を上書きする。
+block_override _ A A
+block_override in_house A B
+
+
+
+
+
+
+/* ___ BGM_cornehl_night ___ */ 
+
+author  	 An Fillnote
+title 	魔女の雑貨店(夜)
+default_que cornehl_night
+
+/* ___ BGM_battle_nusi ___ */ 
+
+author  	 An Fillnote
+title 	森のヌシ
+default_que BGM_battle_nusi
+
+// ブロック遷移情報を上書きする。
+block_override _ B C,  E F
+block_override battle_prepare B B
+// 2コーラス目まで流す
+block_override challenge_1 B C, E F
+// バトル終了
+block_override battle_end B C, C D, E F, F G, G I
+// 通常バトルへ戻る
+// サビは1コーラス目で終了
+block_override mainbattle B C,  E C, F G
+
+
+
+/* ___ BGM_degree45 ___ */ 
+
+author  	 Ramine
+title 	45度だけ開けた世界
+default_que degree45
+
+
+/* ___ BGM_shopping ___ */ 
+
+author  	 びーみゅ
+title 	Shopping ChipTune
+default_que     shopping
+
+/* ___ BGM_valentine ___ */ 
+
+author  	 びーみゅ
+title 	valentineday 
+default_que     valentine
+
+
+/* ___ BGM_ixia ___ */ 
+
+author  	 ginkiha
+title 	イクシャ・ポリスタキア
+default_que     Ixia_Usual
+
+/* ___ BGM_ixia_night ___ */ 
+
+author  	 ginkiha+hinayua
+title 	イクシャ・ポリスタキア(Chill)
+default_que     ixia_night
+
+
+/* ___ BGM_underwater ___ */ 
+
+title 	underwater
+default_que     underwater
+
+
+/* ___ BGM_wind ___ */ 
+
+title 	wind
+default_que     wind
+
+/* ___ BGM_herghost ___ */ 
+
+author  	 ayato sound create
+title 	her ghost
+default_que     herghost
+
+/* ___ BGM_suzumusi ___ */ 
+
+title 	suzumusi
+default_que     suzumusi
+/* ___ BGM_inn ___ */ 
+
+title 	inn
+default_que     inn
+
+/* ___ BGM_popsup ___ */ 
+
+author  	 Musmus
+title 	Pops up the mind wings
+default_que     popsup
+
+/* ___ BGM_tilde ___ */ 
+
+author  	 ayato sound create
+title 	いたずら
+default_que     tilde
+
+/* ___ BGM_town4 ___ */ 
+
+author  	 ayato sound create
+title 	town4
+default_que     town4
+/* ___ BGM_tuuzyou ___ */ 
+
+author  	 ayato sound create
+title 	tuuzyou
+default_que     tuuzyou
+
+/* ___ BGM_light ___ */ 
+
+author  	 Ramine
+title 	light
+default_que     BGM_light
+
+/* ___ BGM_primula ___ */ 
+
+author  	 rN
+title 	Primula
+default_que     primula
+
+
+/* ___ BGM_luminous_particle ___ */ 
+
+author  	 Ramine
+title 	luminous_particle
+default_que     luminous_particle
+
+
+/* ___ BGM_sohunosyosai ___ */ 
+
+author  	 watson
+title 	祖父の書斎
+default_que     sohunosyosai
+
+
+
+/* ___ BGM_fatal_huon ___ */ 
+
+author  	 ayato sound create
+title 	07 不穏
+default_que     fatal_huon
+
+
+/* ___ BGM_yocho ___ */ 
+
+author  	 watson
+title 	予兆
+default_que     BGM_yocho
+
+/* ___ BGM_madhatter ___ */ 
+
+author  	 びーみゅ
+title 	マッドハッターのテーマ
+default_que     BGM_madhatter
+
+/* ___ BGM_hunter_minarai ___ */ 
+
+author  	 秋山裕和
+title 	ハンター見習い
+default_que     BGM_hunter_minarai
+
+
+
+
+/* ___ BGM_killing ___ */ 
+
+author  	 ayato sound create
+title 	C_killing
+default_que     BGM_killing
+
+
+/* ___ BGM_morinokioku ___ */ 
+
+author  	 watson
+title 	森の記憶
+default_que     BGM_morinokioku
+
+
+/* ___ BGM_c_sign ___ */ 
+
+author  	 ayato sound create
+title 	C_sign
+default_que     BGM_c_sign
+
+
+/* ___ BGM_tokimeki ___ */ 
+
+author  	 ayato sound create
+title 	純愛09 トキメキ
+default_que     BGM_tokimeki
+
+
+/* ___ BGM_bukiyou_na_hutari ___ */ 
+
+author  	 ayato sound create
+title 	純愛01 不器用な二人
+default_que     BGM_bukiyou_na_hutari
+
+
+
+/* ___ BGM_yatto_deaeta ___ */ 
+
+author  	 ayato sound create
+title 	純愛02 やっと出会えた
+default_que     BGM_yatto_deaeta
+

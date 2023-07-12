@@ -1,0 +1,211 @@
+[
+    { // TALKER n C
+        "type": "talker",
+        "who": "n",
+        "hori": "C",
+        "vert": ""
+    },
+    { // TALKER_REPLACE i Unknown talk_cane
+        "type": "talker_replace",
+        "who": "i",
+        "name": "Unknown",
+        "voice": "cane"
+    },
+    { // HKDS n C #<%> MONOLOGUE
+        "type": "hkds",
+        "who": "n",
+        "hori": "C",
+        "vert": "",
+        "follow": "#<%>",
+        "border": "MONOLOGUE"
+    },
+    { // PIC n ......
+        "type": "pic",
+        "who": "n",
+        "url": "......"
+    },
+    { // PIC_MP n TTT
+        "type": "pic_mp",
+        "who": "n",
+        "emo": "TTT" // 多个表情请用原生指令
+    },
+    { // PIC_MOVEA d 30 DANCE
+        "type": "pic_moveA",
+        "who": "d",
+        "time": 30,
+        "action": "DANCE"
+    },
+    { // PIC_HIDE n
+        "type": "pic_hide",
+        "who": "n"
+    },
+    { // PIC_FILL &0 DARK
+        "type": "pic_f",
+        "instruction": "FILL",
+        "args": "&0 DARK"
+    },
+    { // PIC_SWAP #0 #1
+        "type": "pic_s",
+        "instruction": "SWAP",
+        "args": "#0 #1"
+    },
+    { // PIC_HIDE_ALL
+        "type": "pic_",
+        "instruction": "HIDE_ALL",
+        "args": ""
+    },
+    { // MSG n_01
+        "type": "msg",
+        "who": "n", // 如果直接使用 n_01 ?
+        "style": "<angry>", // 剑山
+        "text": "一行最多16字，一页最多5行。\n上方注音：<rb c=\"Cradle\">摇篮</rb>\n<big>38号字<small>12号字\n*\n第二页，右击帮助查看更多。"
+    },
+    { // MSG BOOK@L_b00
+        "type": "msg_book",
+        "hori": "L",
+        "vert": "",
+        "text": "学园首屈一指的才女，\n柯涅尔家让人骄傲的小女儿。\n虽然诺艾儿觉得自己\n并没有资格拥有这两个头衔，\n但只是装装样子的话应该没问题吧。"
+    },
+    { // TX_BOARD _eventboard_house_witchboard_00 3
+        "type": "tx_board",
+        "id": "house_witchboard_00",
+        "style": 3
+    },
+    { // MSG_HIDE
+        "type": "msg_hide"
+    },
+    { // MSG_HOLD
+        "type": "msg_hold"
+    },
+    { // MTL MSG_SKIP
+        "type": "timeout",
+        "tick": 0,
+        "instructions": [
+            {
+                "type": "msg_skip"
+            }
+        ]
+    },
+    { // DOTL / DOMTL / CLEARTL / CLEARMTL
+        "type": "op_tl",
+        "operation": "DOTL"
+    },
+    { // WAIT 60
+        "type": "wait",
+        "tick": 60
+    },
+    {
+        // TUTO_MSG Tuto_collect
+        // TUTO_POS C T
+        "type": "tuto_msg",
+        "tuto": "collect",
+        "pos": "T"
+    },
+    { // TUTO_REMOVE_ALL
+        "type": "tuto_remove",
+        "all": true
+    },
+    {
+        // LOAD_BGM BGM_title
+        // REPLACE_BGM 0 0
+        "type": "play_bgm",
+        "bgm": "title",
+        "fadeout": 0,
+        "fadein": 0
+    },
+    { // HALF_BGM 1
+        "type": "half_bgm",
+        "half": true
+    },
+    { // STOP_BGM 0
+        "type": "trigger_bgm",
+        "stop": true,
+        "tick": 0
+    },
+    { // START_BGM 0
+        "type": "trigger_bgm",
+        "stop": false,
+        "tick": 0
+    },
+    { // GREETING @ 10
+        "type": "greeting",
+        "dir": "@",
+        "dist": "10"
+    },
+    {
+        // #<%>
+        // PR_OUTFIT BABYDOLL
+        "type": "pr_outfit",
+        "BABYDOLL": true
+    },
+    { // UIALERT '自动保存完成。'
+        "type": "uialert",
+        "text": "自动保存完成。"
+    },
+    { // UI_DISABLE / UI_ENABLE
+        "type": "ui_trigger",
+        "DISABLE": true // false
+    },
+    { // DANGER 9 0
+        "type": "danger",
+        "danger": 9,
+        "immediate": false
+    },
+    { // GFC_SET PVV0_KILLED GFC[PVV0_KILLED]+1
+        "type": "gfc_set",
+        "id": "PVV0_KILLED",
+        "value": "GFC[PVV0_KILLED]+1",
+        "max": false
+    },
+    { // ENGINE PrimulaPVV11 1
+        "type": "engine",
+        "who": "PrimulaPVV11",
+        "id": 1
+    },
+    {
+        "type": "tpmap",
+        "mapid": "house_theroom",
+        "x": 22,
+        "y": 18
+    },
+    { // PE ZOOM2 60
+        "type": "pe",
+        "effect": "ZOOM2",
+        "tick": "60"
+    },
+    { // 原生指令
+        "type": "custom",
+        "instruction": "// 这是注释"
+    },
+    { // IF-ELSE
+        "type": "if_s",
+        "cond": "is_night",
+        "then_": [], // 嵌套的json指令，下同
+        "else_": []
+    },
+    { // SELECT n, n值不用手写
+        "type": "select",
+        "choices": [
+            {
+                "type": "choice",
+                "text": "害怕",
+                "instructions": []
+            },
+            {
+                "type": "choice",
+                "text": "不害怕",
+                "instructions": []
+            }
+        ]
+    },
+    { // do_while
+        "type": "do_while",
+        "instructions": [],
+        "cond": "noel_cloth_dirty"
+    },
+    { // until-do
+        "type": "until_do",
+        "cond": "noel_torned",
+        "instructions": []
+    }
+]
