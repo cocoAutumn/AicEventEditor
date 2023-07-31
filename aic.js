@@ -2,7 +2,7 @@
 // 语句集合和表达式集合
 aicBlocks = {
     "statement": [
-        "talker","talker_replace","hkds","pic","pic_mp","pic_moveA","pic_hide","pic_f","pic_s","pic_","msg","msg_book","tx_board","msg_hide","msg_hold","msg_skip","timeout","op_tl","wait","tuto_msg","tuto_remove","play_bgm","half_bgm","trigger_bgm","greeting","pr_outfit","uialert","ui_trigger","danger","gfc_set","engine","tpmap","pe","if_s","select","choice","do_while","until_do","custom"
+        "talker","talker_replace","hkds","pic","pic_mp","pic_moveA","pic_hide","pic_f","pic_s","pic_","msg","msg_book","tx_board","msg_hide","msg_hold","msg_skip","timeout","op_tl","wait","tuto_msg","tuto_remove","play_bgm","half_bgm","trigger_bgm","greeting","pr_outfit","uialert","ui_trigger","danger","gfc_set","engine","tpmap_house","tpmap_battle","tpmap_chest","tpmap_other","pe","if_s","select","choice","do_while","until_do","custom"
     ]
 }
 
@@ -342,6 +342,132 @@ Object.assign(aicBlocks,{
             ["森主战","IxiaPVV104"]
         ],
         "default": "PrimulaPVV11"
+    },
+    "House_List": {
+        "type": "field_dropdown",
+        "options": [
+            ["正门前","house_road"],
+            ["庭院","house_center"],
+            ["杂货店","house_shop"],
+            ["厨房","house_hall"],
+            ["自己的房间","house_noelroom"],
+            ["姐姐的工房","house_atelier"],
+            ["后院","house_barn"],
+            ["墓地","house_cliff"],
+            ["血池","house_lake"],
+            ["强化插槽","house_cliff_cave"],
+            ["双重闪避","house_puzzle_cliffcave"],
+            ["鸟笼左侧","house_cave2forest"],
+            ["休息室","house_theroom"]
+        ],
+        "default": "house_road"
+    },
+    "Battle_List": {
+        "type": "field_dropdown",
+        "options": [
+            ["穿林日光之庭","forest_01"],
+            ["鸟笼","forest_athletic_thorn_under"],
+            ["鲜血镇压者","forest_tomato"],
+            ["暗夜帷幕","forest_cliff_portal"],
+            ["孢子舞台","forest_mushpot"],
+            ["卑鄙的后勤兵","forest_tikuwar"],
+            ["盗掘者","forest_toybox"],
+            ["飞瀑悬窟","forest_wood_slash"],
+            ["蛊惑之沼","forest_swamp"],
+            ["遛狗公园","forest_senzyo2cliff"],
+            ["沐风中庭","forest_wind_senzyo"],
+            ["土龙巢穴","forest_senzyo"],
+            ["古驿夜宴","forest_rwood_column"],
+            ["黄昏骤雨","forest_darkpot"],
+            ["空中回廊","forest_wood_right_exit"],
+            ["裂隙看守者","forest_treecrack"],
+            ["笼中余祸","forest_geckoland"],
+            ["迷途者","forest_coroseum"],
+            ["酸池深渊","forest_nightacid"],
+            ["酸木前餐","forest_wood_hall"],
+            ["匣中恶魔","forest_darkpotu"],
+            ["小心头顶","forest_mush_narrow"],
+            ["旋转木马","forest_buibui"],
+            ["装配实验间","forest_toylabo"],
+            ["湖面蜃景","forest_wood_nightlake"],
+            ["机关人偶","forest_clocktower"],
+            ["菌丝之王","forest_mush_coroseum"],
+            ["酸湖下的猬鼠","forest_acid_lake"],
+            ["炎舞神乐","forest_foxhall"],
+            ["欲壑与泥潭","forest_coroseum_frog"],
+            ["森之领主","forest_nusi_coroseum"]
+        ],
+        "default": "forest_01"
+    },
+    "Chest_List": {
+        "type": "field_dropdown",
+        "options": [
+            ["旋风斩击","forest_puzzle_worms"],
+            ["彗星俯冲","forest_athletic_tikuwafall"],
+            ["突进冲击","forest_puzzle_mesher"],
+            ["凌空横斩","forest_wind_thorn"],
+            ["护盾冲击","forest_puzzle_water"],
+            ["环轨护盾","forest_athletic_thunder_wood"],
+            ["血之虹瞳","forest_darkpot_r"],
+            ["抓地鞋","forest_puzzle_water2"],
+            ["超载咏唱","forest_wood_hall"],
+            ["猫之缓降","forest_puzzle_timer"],
+            ["盗垒滑步","forest_puzzle_hame"],
+            ["祈雨御守","forest_box_puzzle"],
+            ["恐高症","forest_puzzle_burnivy"],
+            ["藏巧守拙","forest_athletic_ladder"],
+            ["长法杖","forest_coroseum"],
+            ["濡湿预兆","forest_frog_pre"],
+            ["金币+100","forest_puzzle_ctop"],
+            ["强化插槽","forest_puzzle_ct"],
+            ["过充插槽","forest_sea"],
+            ["土蛇左侧HP","forest_tc"],
+            ["土蛇右侧HP","forest_senzyort"],
+            ["巨人右侧HP","forest_presser_mine"],
+            ["木马下方HP","forest_wood_extender_puzzle"],
+            ["瓦罗斯左侧HP","forest_ruin_hall"],
+            ["清水MP+20","forest_lava_secret"],
+            ["圣光爆发","forest_burst_treasure"]
+        ],
+        "default": "forest_puzzle_worms"
+    },
+    "Map_Other_List": {
+        "type": "field_dropdown",
+        "options": [
+            ["阿尔玛同学","forest_ruin_station"],
+            ["阿尔玛右侧","forest_ruin_road"],
+            ["暗夜帷幕左侧","forest_hirobau"],
+            ["孢子舞台左下","forest_athletic_tikuwa_thorn"],
+            ["初始清水","forest_secret_lake"],
+            ["初始清水右侧","forest_secr_in"],
+            ["大桥和矿洞","forest_hiroba"],
+            ["蛊惑之沼上方","forest_ostrea_swampt"],
+            ["护盾冲击右侧","forest_column"],
+            ["彗星俯冲上方","forest_acid_dobadoba"],
+            ["精灵之村入口","forest_satoentrance"],
+            ["空中回廊右侧","forest_wood_wip"],
+            ["空中回廊左侧","forest_wood_rcolumn"],
+            ["恐高症左侧","forest_rt_lavaroad"],
+            ["裂隙看守者左侧","forest_c"],
+            ["沐风中庭下方","forest_01t"],
+            ["鸟笼上方","forest_ahletic_home_thorn"],
+            ["鸟笼右下","forest_ahletic_tikuwa"],
+            ["森之领主右侧","forest_nusi_right"],
+            ["森之领主左侧","forest_nusi_pre"],
+            ["上层横风场","forest_roft_wind"],
+            ["圣光爆发上方","forest_entrance_grazia"],
+            ["酸木前餐上方","forest_wood_cross"],
+            ["土龙巢穴上方","forest_senzyot"],
+            ["瓦罗斯施工现场","forest_ruin_station_r"],
+            ["小心头顶右下","forest_thunder_dancing"],
+            ["小心头顶左侧","forest_lava_coming"],
+            ["旋转木马右侧","forest_wood_matoate"],
+            ["炎舞神乐上方","forest_falltemp"],
+            ["炎舞神乐左侧","forest_foxhall_pre"],
+            ["欲壑与泥潭左侧","forest_frog_left"],
+            ["装配实验间左侧","forest_toylabo_pre"]
+        ],
+        "default": "forest_ruin_station"
     },
     "PE_List": {
         "type": "field_dropdown",
@@ -1766,15 +1892,64 @@ Object.assign(aicBlocks,{
             return aicFunctions.xmlText('engine',inputs,next,isShadow,comment,attribute);
         }
     },
-    "tpmap": {
+    "tpmap_house": {
         "type": "statement",
         "json": {
-            "type": "tpmap",
-            "message0": "地图传送： %1 x= %2 y= %3",
+            "type": "tpmap_house",
+            "message0": "地图传送（家里）： %1 x= %2 y= %3",
             "args0": [
-                Object.assign({},aicBlocks.RawString,{
+                Object.assign({},aicBlocks.House_List,{
                     "name": "mapid",
-                    "text": "house_theroom"
+                    "default": "house_road"
+                }),
+                Object.assign({},aicBlocks.Int,{
+                    "name": "x",
+                    "value": 30
+                }),
+                Object.assign({},aicBlocks.Int,{
+                    "name": "y",
+                    "value": 0
+                })
+            ],
+            "inputsInline": true,
+            "tooltip": "",
+            "helpUrl": "",
+            "colour": 30,
+            "previousStatement": "tpmap_house",
+            "nextStatement": aicBlocks.statement
+        },
+        "generFunc": function(block) {
+            var mapid = block.getFieldValue('mapid');
+            mapid = aicFunctions.pre('House_List')(mapid,block,'mapid','tpmap_house');
+            var x = block.getFieldValue('x');
+            x = aicFunctions.pre('Int')(x,block,'x','tpmap_house');
+            var y = block.getFieldValue('y');
+            y = aicFunctions.pre('Int')(y,block,'y','tpmap_house');
+            var code = aicFunctions.defaultCode('tpmap_house',eval('['+aicBlocks['tpmap_house'].args.join(',')+']'),block);
+            return code;
+        },
+        "args": ["mapid","x","y"],
+        "argsType": ["field","field","field"],
+        "argsGrammarName": ["House_List","Int","Int"],
+        "omitted": [false,false,false],
+        "multi": [false,false,false],
+        "fieldDefault": function (keyOrIndex) {
+            return aicFunctions.fieldDefault('tpmap_house',keyOrIndex);
+        },
+        "menu": [],
+        "xmlText": function (inputs,next,isShadow,comment,attribute) {
+            return aicFunctions.xmlText('tpmap_house',inputs,next,isShadow,comment,attribute);
+        }
+    },
+    "tpmap_battle": {
+        "type": "statement",
+        "json": {
+            "type": "tpmap_battle",
+            "message0": "地图传送（战斗）： %1 x= %2 y= %3",
+            "args0": [
+                Object.assign({},aicBlocks.Battle_List,{
+                    "name": "mapid",
+                    "default": "forest_mushpot"
                 }),
                 Object.assign({},aicBlocks.Int,{
                     "name": "x",
@@ -1789,33 +1964,128 @@ Object.assign(aicBlocks,{
             "tooltip": "",
             "helpUrl": "",
             "colour": 30,
-            "previousStatement": "tpmap",
+            "previousStatement": "tpmap_battle",
             "nextStatement": aicBlocks.statement
         },
         "generFunc": function(block) {
             var mapid = block.getFieldValue('mapid');
-            if (mapid==='') {
-                throw new OmitedError(block,'mapid','tpmap');
-            }
-            mapid = aicFunctions.pre('RawString')(mapid,block,'mapid','tpmap');
+            mapid = aicFunctions.pre('Battle_List')(mapid,block,'mapid','tpmap_battle');
             var x = block.getFieldValue('x');
-            x = aicFunctions.pre('Int')(x,block,'x','tpmap');
+            x = aicFunctions.pre('Int')(x,block,'x','tpmap_battle');
             var y = block.getFieldValue('y');
-            y = aicFunctions.pre('Int')(y,block,'y','tpmap');
-            var code = aicFunctions.defaultCode('tpmap',eval('['+aicBlocks['tpmap'].args.join(',')+']'),block);
+            y = aicFunctions.pre('Int')(y,block,'y','tpmap_battle');
+            var code = aicFunctions.defaultCode('tpmap_battle',eval('['+aicBlocks['tpmap_battle'].args.join(',')+']'),block);
             return code;
         },
         "args": ["mapid","x","y"],
         "argsType": ["field","field","field"],
-        "argsGrammarName": ["RawString","Int","Int"],
+        "argsGrammarName": ["Battle_List","Int","Int"],
         "omitted": [false,false,false],
         "multi": [false,false,false],
         "fieldDefault": function (keyOrIndex) {
-            return aicFunctions.fieldDefault('tpmap',keyOrIndex);
+            return aicFunctions.fieldDefault('tpmap_battle',keyOrIndex);
         },
         "menu": [],
         "xmlText": function (inputs,next,isShadow,comment,attribute) {
-            return aicFunctions.xmlText('tpmap',inputs,next,isShadow,comment,attribute);
+            return aicFunctions.xmlText('tpmap_battle',inputs,next,isShadow,comment,attribute);
+        }
+    },
+    "tpmap_chest": {
+        "type": "statement",
+        "json": {
+            "type": "tpmap_chest",
+            "message0": "地图传送（宝箱）： %1 x= %2 y= %3",
+            "args0": [
+                Object.assign({},aicBlocks.Chest_List,{
+                    "name": "mapid",
+                    "default": "forest_tc"
+                }),
+                Object.assign({},aicBlocks.Int,{
+                    "name": "x",
+                    "value": 22
+                }),
+                Object.assign({},aicBlocks.Int,{
+                    "name": "y",
+                    "value": 18
+                })
+            ],
+            "inputsInline": true,
+            "tooltip": "",
+            "helpUrl": "",
+            "colour": 30,
+            "previousStatement": "tpmap_chest",
+            "nextStatement": aicBlocks.statement
+        },
+        "generFunc": function(block) {
+            var mapid = block.getFieldValue('mapid');
+            mapid = aicFunctions.pre('Chest_List')(mapid,block,'mapid','tpmap_chest');
+            var x = block.getFieldValue('x');
+            x = aicFunctions.pre('Int')(x,block,'x','tpmap_chest');
+            var y = block.getFieldValue('y');
+            y = aicFunctions.pre('Int')(y,block,'y','tpmap_chest');
+            var code = aicFunctions.defaultCode('tpmap_chest',eval('['+aicBlocks['tpmap_chest'].args.join(',')+']'),block);
+            return code;
+        },
+        "args": ["mapid","x","y"],
+        "argsType": ["field","field","field"],
+        "argsGrammarName": ["Chest_List","Int","Int"],
+        "omitted": [false,false,false],
+        "multi": [false,false,false],
+        "fieldDefault": function (keyOrIndex) {
+            return aicFunctions.fieldDefault('tpmap_chest',keyOrIndex);
+        },
+        "menu": [],
+        "xmlText": function (inputs,next,isShadow,comment,attribute) {
+            return aicFunctions.xmlText('tpmap_chest',inputs,next,isShadow,comment,attribute);
+        }
+    },
+    "tpmap_other": {
+        "type": "statement",
+        "json": {
+            "type": "tpmap_other",
+            "message0": "地图传送（其他）： %1 x= %2 y= %3",
+            "args0": [
+                Object.assign({},aicBlocks.Map_Other_List,{
+                    "name": "mapid",
+                    "default": "forest_ruin_station"
+                }),
+                Object.assign({},aicBlocks.Int,{
+                    "name": "x",
+                    "value": 22
+                }),
+                Object.assign({},aicBlocks.Int,{
+                    "name": "y",
+                    "value": 18
+                })
+            ],
+            "inputsInline": true,
+            "tooltip": "",
+            "helpUrl": "",
+            "colour": 30,
+            "previousStatement": "tpmap_other",
+            "nextStatement": aicBlocks.statement
+        },
+        "generFunc": function(block) {
+            var mapid = block.getFieldValue('mapid');
+            mapid = aicFunctions.pre('Map_Other_List')(mapid,block,'mapid','tpmap_other');
+            var x = block.getFieldValue('x');
+            x = aicFunctions.pre('Int')(x,block,'x','tpmap_other');
+            var y = block.getFieldValue('y');
+            y = aicFunctions.pre('Int')(y,block,'y','tpmap_other');
+            var code = aicFunctions.defaultCode('tpmap_other',eval('['+aicBlocks['tpmap_other'].args.join(',')+']'),block);
+            return code;
+        },
+        "args": ["mapid","x","y"],
+        "argsType": ["field","field","field"],
+        "argsGrammarName": ["Map_Other_List","Int","Int"],
+        "omitted": [false,false,false],
+        "multi": [false,false,false],
+        "fieldDefault": function (keyOrIndex) {
+            return aicFunctions.fieldDefault('tpmap_other',keyOrIndex);
+        },
+        "menu": [],
+        "xmlText": function (inputs,next,isShadow,comment,attribute) {
+            return aicFunctions.xmlText('tpmap_other',inputs,next,isShadow,comment,attribute);
         }
     },
     "pe": {
@@ -2503,7 +2773,10 @@ var toolbox = (function(){
             aicBlocks["danger"].xmlText(),
             aicBlocks["gfc_set"].xmlText(),
             aicBlocks["engine"].xmlText(),
-            aicBlocks["tpmap"].xmlText(),
+            aicBlocks["tpmap_house"].xmlText(),
+            aicBlocks["tpmap_battle"].xmlText(),
+            aicBlocks["tpmap_chest"].xmlText(),
+            aicBlocks["tpmap_other"].xmlText(),
             aicBlocks["pe"].xmlText()
         ],
         "流程控制": [
@@ -2663,7 +2936,10 @@ function compile() { // 编译json得到哈语言和对话txt
                 return 'GFC_SET' + (o.max ? '_MX ' : ' ') + o.id + ' ' + o.value;
             case 'engine':
                 return `ENGINE ${o.who} ${o.id}`;
-            case 'tpmap':
+            case 'tpmap_house':
+            case 'tpmap_battle':
+            case 'tpmap_chest':
+            case 'tpmap_other':
                 return `INIT_MAP_MATERIAL ${o.mapid} 1\n` +
                     'WAIT_FN MAP_TRANSFER\n' +
                     `NEL_EXECUTE_FAST_TRAVEL ${o.mapid} ${o.x} ${o.y}`;

@@ -1,5 +1,5 @@
 《Alice in Cradle》事件编辑器 by @诺艾儿Noel
-Ver 1.0 公测版
+Ver 1.1 公测版（2022.07.31）：为地图传送功能增加了分类下拉框
 Pitiable does NOT imply Adorable. —— BobUnderGrave
 
 欢迎使用本事件编辑器，请按照以下步骤操作：
@@ -8,11 +8,11 @@ Pitiable does NOT imply Adorable. —— BobUnderGrave
 3. 从左侧的各个类别中拖动所需的指令积木，拼接在一起并填写必要的参数，得到一个完整的事件。
 4. 需要关闭页面时请先点击左上角的"复制当前json"按钮将页面下方的json文本复制到剪贴板并粘贴到记事本等处保存。
 5. 这样，当再次开工时就可以点击左上角的"由json还原为积木"按钮来将上一步复制出的json粘贴到输入框中还原为积木，从而继续你的工作。
-6. 彻底完工后，请点击"编译！"按钮，然后输入一个事件id（可以参考子文件夹"现有事件的哈语言"中的文件名，如"s00_0a"），就能保存生成的哈语言文件。
-7. 如果该事件中含有对话，则对话会被导出到页面下方并尝试自动复制，请像json一样粘贴到记事本等处保存，以供日后覆盖到localization文件夹等。
+6. 彻底完工后，请点击"编译！"按钮，然后输入一个事件id（见下），就能保存生成的哈语言文件。
+7. 如果该事件中含有对话，则对话会被导出到页面下方并尝试自动复制，请像json一样粘贴到它处保存，以供日后覆盖到localization文件夹等。
 
 运行事件的方法（仅限Windows系统，如果是MacOS系统请私戳我）：
-1. 将"BepInEx"文件夹、"resource"文件夹、winhttp.dll、doorstop_config.ini这四个文件放在AliceInCradle.exe的同目录下。
+1. 将"BepInEx"文件夹、"resource"文件夹、winhttp.dll、doorstop_config.ini这四个文件放在AliceInCradle.exe的同目录下（路径必须为全英文）。
 2. 将之前得到的后缀名为".cmd.txt"的文件放进resource文件夹，就像 bilibili.com/video/BV1S14y127ow 中的补丁一样。
 3. 如果事件含有对话，则还需在"AliceInCradle_Data\StreamingAssets\localization\zh-cn"文件夹下找到对应的"ev_xxx.txt"，用之前自动复制的对话替换其中的部分内容。
 4. 将"AliceInCradle_Data\StreamingAssets\_debug.txt"文件打开，把reloadmtr、announce、timestamp三项后面的0都改成1。
@@ -23,7 +23,7 @@ Pitiable does NOT imply Adorable. —— BobUnderGrave
 注意事项：
 1. 如果你懂得HTML5的知识，可以按下Ctrl+Shift+i打开控制台做更多事情。
 2. 并非所有哈语言指令都提供了对应的积木（比如音效），请善用"原生指令"。
-3. 所有地图id、音乐和音效名的txt文件已附上，必要时请查阅。
+3. 所有地图id的csv文件、音乐和音效名的txt文件已附上，必要时请查阅。
 4. 如果想要修改积木区域的尺寸以更适应显示器分辨率，可以用记事本打开index.html并修改<div id="blocklyDiv" style="height: 630px; width: 1120px;"></div>这一行。
 5. "延迟执行"积木里面并不是什么其他积木都能往里塞（比如流程控制类或者编译结果为多行的指令），否则编译结果会出bug！
 6. 公测期间如有任何问题请直接在b站私信 @诺艾儿Noel 或加入QQ群321655399（2024AinC拜年纪）反馈！

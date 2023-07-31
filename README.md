@@ -2,7 +2,10 @@
 日式Ryona动作类角色扮演游戏AliceinCradle的事件编辑器，该游戏由NanameHacha制作（https://fantia.jp/fanclubs/24531）
 ## 使用步骤
 1. 点击绿色按钮`<>Code▼`再点击"Download ZIP"。
-2. 解压后先阅读HowToUse（记事本或图片），再双击index.html。
+2. 解压后先阅读HowToUse.txt，再双击index.html。
+## 更新日志/Updated
+2023.07.31: V1.1 beta, "tpmap" command upgraded.
+2023.07.12: V1.0 beta
 # AicEventEditor
 The event editor of Japanese ryona ARPG "AliceinCradle" by NanameHacha (https://fantia.jp/fanclubs/24531)
 ## How to use

@@ -138,9 +138,9 @@ n为非负整数（三个必须一致），DARK表示黑屏，x表示进入黑�
 > 以书页为背景显示ev_book.txt中的旁白（如濒死治疗），
 > 这里Y为位置，和TALKER指令一样有不止27种写法。
 2. TX_BOARD：告示牌/书信
-语法为`TX_BOARD _eventboard_xxx`。
+语法为`TX_BOARD _eventboard_xxx 2/3/4`。
 会将lang_tx_event.txt中由标识符`_eventboard_xxx`定义的多行文本作为告示牌显示。
-如果写作`TX_BOARD _eventboard_xxx FRAMED_PAPER`，就会作为书信显示，如老师的留言和伊夏的书信。
+第二个参数为正整数，2表示黑底无花边（如坐在长椅时），3表示黑底有花边（如路标牌），4表示书信（如老师的留言）。
 3. MSG_HIDE：隐藏对话框
 本指令不填参数就能隐藏所有对话框，但有时会带上参数1，有时则写作`AUTO_MSG_HIDE 0/1`，意义不明。
 4. MSG_HOLD：保持对话框

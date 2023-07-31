@@ -17,13 +17,9 @@ statement
     | danger
     | gfc_set
     | engine
-    | tpmap
+    | tpmap_house |tpmap_battle | tpmap_chest | tpmap_other
     | pe
-    | if_s
-    | select
-    | choice
-    | do_while
-    | until_do
+    | if_s | select | choice | do_while | until_do
     | custom
     ;
 
@@ -165,10 +161,28 @@ color: this.otherColor
 default: ["PrimulaPVV11", 1]
 */
 
-tpmap : '地图传送：' mapid=RawString 'x=' x=Int 'y=' y=Int ;
-/* tpmap
+tpmap_house : '地图传送（家里）：' mapid=House_List 'x=' x=Int 'y=' y=Int ;
+/* tpmap_house
 color: this.otherColor
-default: ["house_theroom", 22, 18]
+default: ["house_road", 30, 0]
+*/
+
+tpmap_battle : '地图传送（战斗）：' mapid=Battle_List 'x=' x=Int 'y=' y=Int ;
+/* tpmap_battle
+color: this.otherColor
+default: ["forest_mushpot", 22, 18]
+*/
+
+tpmap_chest : '地图传送（宝箱）：' mapid=Chest_List 'x=' x=Int 'y=' y=Int ;
+/* tpmap_chest
+color: this.otherColor
+default: ["forest_tc", 22, 18]
+*/
+
+tpmap_other : '地图传送（其他）：' mapid=Map_Other_List 'x=' x=Int 'y=' y=Int ;
+/* tpmap_other
+color: this.otherColor
+default: ["forest_ruin_station", 22, 18]
 */
 
 pe : '后期特效：' effect=PE_List '完成帧数（-1表示撤去）' tick=RawString ;
@@ -275,6 +289,22 @@ BGM_List
 Engine_List
     : '老师教学'|'土蛇战'|'森主战'
     /* Engine_List ['PrimulaPVV11','IxiaPVV102','IxiaPVV104']*/;
+
+House_List
+    : '正门前'|'庭院'|'杂货店'|'厨房'|'自己的房间'|'姐姐的工房'|'后院'|'墓地'|'血池'|'强化插槽'|'双重闪避'|'鸟笼左侧'|'休息室'
+    /*House_List ['house_road','house_center','house_shop','house_hall','house_noelroom','house_atelier','house_barn','house_cliff','house_lake','house_cliff_cave','house_puzzle_cliffcave','house_cave2forest','house_theroom']*/;
+
+Battle_List
+    : '穿林日光之庭'|'鸟笼'|'鲜血镇压者'|'暗夜帷幕'|'孢子舞台'|'卑鄙的后勤兵'|'盗掘者'|'飞瀑悬窟'|'蛊惑之沼'|'遛狗公园'|'沐风中庭'|'土龙巢穴'|'古驿夜宴'|'黄昏骤雨'|'空中回廊'|'裂隙看守者'|'笼中余祸'|'迷途者'|'酸池深渊'|'酸木前餐'|'匣中恶魔'|'小心头顶'|'旋转木马'|'装配实验间'|'湖面蜃景'|'机关人偶'|'菌丝之王'|'酸湖下的猬鼠'|'炎舞神乐'|'欲壑与泥潭'|'森之领主'
+    /*Battle_List ['forest_01','forest_athletic_thorn_under','forest_tomato','forest_cliff_portal','forest_mushpot','forest_tikuwar','forest_toybox','forest_wood_slash','forest_swamp','forest_senzyo2cliff','forest_wind_senzyo','forest_senzyo','forest_rwood_column','forest_darkpot','forest_wood_right_exit','forest_treecrack','forest_geckoland','forest_coroseum','forest_nightacid','forest_wood_hall','forest_darkpotu','forest_mush_narrow','forest_buibui','forest_toylabo','forest_wood_nightlake','forest_clocktower','forest_mush_coroseum','forest_acid_lake','forest_foxhall','forest_coroseum_frog','forest_nusi_coroseum']*/;
+
+Chest_List
+    : '旋风斩击'|'彗星俯冲'|'突进冲击'|'凌空横斩'|'护盾冲击'|'环轨护盾'|'血之虹瞳'|'抓地鞋'|'超载咏唱'|'猫之缓降'|'盗垒滑步'|'祈雨御守'|'恐高症'|'藏巧守拙'|'长法杖'|'濡湿预兆'|'金币+100'|'强化插槽'|'过充插槽'|'土蛇左侧HP'|'土蛇右侧HP'|'巨人右侧HP'|'木马下方HP'|'瓦罗斯左侧HP'|'清水MP+20'|'圣光爆发'
+    /*Chest_List ['forest_puzzle_worms','forest_athletic_tikuwafall','forest_puzzle_mesher','forest_wind_thorn','forest_puzzle_water','forest_athletic_thunder_wood','forest_darkpot_r','forest_puzzle_water2','forest_wood_hall','forest_puzzle_timer','forest_puzzle_hame','forest_box_puzzle','forest_puzzle_burnivy','forest_athletic_ladder','forest_coroseum','forest_frog_pre','forest_puzzle_ctop','forest_puzzle_ct','forest_sea','forest_tc','forest_senzyort','forest_presser_mine','forest_wood_extender_puzzle','forest_ruin_hall','forest_lava_secret','forest_burst_treasure']*/;
+
+Map_Other_List
+    : '阿尔玛同学'|'阿尔玛右侧'|'暗夜帷幕左侧'|'孢子舞台左下'|'初始清水'|'初始清水右侧'|'大桥和矿洞'|'蛊惑之沼上方'|'护盾冲击右侧'|'彗星俯冲上方'|'精灵之村入口'|'空中回廊右侧'|'空中回廊左侧'|'恐高症左侧'|'裂隙看守者左侧'|'沐风中庭下方'|'鸟笼上方'|'鸟笼右下'|'森之领主右侧'|'森之领主左侧'|'上层横风场'|'圣光爆发上方'|'酸木前餐上方'|'土龙巢穴上方'|'瓦罗斯施工现场'|'小心头顶右下'|'小心头顶左侧'|'旋转木马右侧'|'炎舞神乐上方'|'炎舞神乐左侧'|'欲壑与泥潭左侧'|'装配实验间左侧'
+    /*Map_Other_List ['forest_ruin_station','forest_ruin_road','forest_hirobau','forest_athletic_tikuwa_thorn','forest_secret_lake','forest_secr_in','forest_hiroba','forest_ostrea_swampt','forest_column','forest_acid_dobadoba','forest_satoentrance','forest_wood_wip','forest_wood_rcolumn','forest_rt_lavaroad','forest_c','forest_01t','forest_ahletic_home_thorn','forest_ahletic_tikuwa','forest_nusi_right','forest_nusi_pre','forest_roft_wind','forest_entrance_grazia','forest_wood_cross','forest_senzyot','forest_ruin_station_r','forest_thunder_dancing','forest_lava_coming','forest_wood_matoate','forest_falltemp','forest_foxhall_pre','forest_frog_left','forest_toylabo_pre']*/;
 
 PE_List
     : '音乐减弱'|'音乐水下'|'圣光爆发'|'混乱镜头'|'污染体出场'|'最终阿尔法'|'闪烁'|'气体'|'近视'|'心跳'|'濒死'|'圈出'|'果酱'|'产卵'|'M2D_VAR_0'|'选择魔法'|'魔法设备激活'|'被吸收魔力'|'枯竭'|'开花'|'雨'|'霰弹'|'音效减弱'|'开始战斗'|'触电'|'慢动作'|'虫墙'|'镜头拉近'|'丸吞'|'__MAX'

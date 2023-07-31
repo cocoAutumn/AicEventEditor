@@ -9,8 +9,7 @@ Alice in Cradle的StreamingAssets文件夹中有一个localization子文件夹�
 ## 准备工作
 首先请打开StreamingAssets文件夹的_debug.txt，把里面的reloadmtr、announce、timestamp这三项后面的0都改成1，从而启用"F9热重载译文、F7控制台"（左下角看到时间戳说明有效）这两项功能。此后即使您在游戏运行过程中修改了译文文件并保存，也可以随时按下F9立即刷新它们。
 > 所有txt文件编码必须为UTF-8，必须用Unix换行（LF、`\n`），不能用Windows回车换行（CRLF，`\r\n`），否则可能变成双倍行距。
-> Win10以上的记事本可以正确读取LF，但新建的文件默认是CRLF。
-> （Win8.1以下尤甚）建议使用微软Visual Studio Code编辑器。
+> Win10以上的记事本可以正确读取LF，但新建的文件默认是CRLF，（Win8.1以下尤甚）建议使用微软Visual Studio Code编辑器。
 ## l10n文件夹的结构
 该文件夹下有一个`__AdditionalFonts`子文件夹用于存放中文的高清规范字体，0.22版本从fantia下载是不包括这个文件夹的。
 此外有一堆`___family_lang.txt`（lang为语言代码）用来引导语言设置。
@@ -81,7 +80,7 @@ w：瓦罗斯（黑狼兽人，Walross）
 语法为`<font k1="v1" k2="v2" ...>文本</font>`。
 这里的k可以为size（字号）、linespacing（行距）、color（颜色）、alpha（不透明度）等，如：
 `<font color="#E70B0B">设置将在游戏重启后生效。</font>`
-2. 字体变种：
+2. 字体变种：（未测试4种是否都有效）
 语法为`<b>粗体</b><i>斜体</i><u>下划线</u><del>删除线</del>`。
 > 颜色和字体变种可以直接在markdown编辑器中预览。
 3. 按键提示：
