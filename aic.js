@@ -2,7 +2,7 @@
 // 语句集合和表达式集合
 aicBlocks = {
     "statement": [
-        "talker","talker_replace","hkds","pic","pic_mp","pic_moveA","pic_hide","pic_f","pic_s","pic_","msg","msg_book","tx_board","msg_hide","msg_hold","msg_skip","timeout","op_tl","wait","tuto_msg","tuto_remove","play_bgm","half_bgm","trigger_bgm","greeting","pr_outfit","uialert","ui_trigger","danger","gfc_set","engine","tpmap_house","tpmap_battle","tpmap_chest","tpmap_other","pe","if_s","select","choice","do_while","until_do","custom"
+        "talker","talker_replace","hkds","pic","pic_mp","pic_moveA","pic_hide","pic_f","pic_s","pic_","msg","msg_book","tx_board","msg_hide","msg_hold","msg_skip","timeout","op_tl","wait","tuto_msg","tuto_remove","play_bgm","half_bgm","trigger_bgm","play_snd","greeting","pr_outfit","uialert","ui_trigger","danger","gfc_set","engine","tpmap_house","tpmap_battle","tpmap_chest","tpmap_other","pe","if_s","select","choice","do_while","until_do","custom"
     ]
 }
 
@@ -333,6 +333,42 @@ Object.assign(aicBlocks,{
             ["要迟到了","morinokioku"]
         ],
         "default": "title"
+    },
+    "SND_List": {
+        "type": "field_dropdown",
+        "options": [
+            ["absorb_guchu","absorb_guchu"],
+            ["cloth_off","cloth_off"],
+            ["cloth_off_0","cloth_off_0"],
+            ["cloth_off_1","cloth_off_1"],
+            ["door_storeportal_open","door_storeportal_open"],
+            ["door_wood_s_open","door_wood_s_open"],
+            ["dora_ring","dora_ring"],
+            ["flashback_noise","flashback_noise"],
+            ["foot_leafground_ev2","foot_leafground_ev2"],
+            ["foot_sand","foot_sand"],
+            ["get_item","get_item"],
+            ["gimmick_keyboard","gimmick_keyboard"],
+            ["ground_gogogo","ground_gogogo"],
+            ["insect_rape2","insect_rape2"],
+            ["itembox_appear","itembox_appear"],
+            ["nusi_inject","nusi_inject"],
+            ["nusivo_grawl","nusivo_grawl"],
+            ["orgasm","orgasm"],
+            ["paper","paper"],
+            ["ping","ping"],
+            ["pr_down","pr_down"],
+            ["pr_hit_wall","pr_hit_wall"],
+            ["prko_s","prko_s"],
+            ["puni","puni"],
+            ["restroom_flush","restroom_flush"],
+            ["restroom_pee","restroom_pee"],
+            ["restroom_shower","restroom_shower"],
+            ["small_hit","small_hit"],
+            ["step_stair","step_stair"],
+            ["tsukkomi","tsukkomi"]
+        ],
+        "default": "absorb_guchu"
     },
     "Engine_List": {
         "type": "field_dropdown",
@@ -1186,7 +1222,7 @@ Object.assign(aicBlocks,{
             "inputsInline": true,
             "tooltip": "",
             "helpUrl": "",
-            "colour": 160,
+            "colour": 120,
             "previousStatement": "msg_hide",
             "nextStatement": aicBlocks.statement
         },
@@ -1216,7 +1252,7 @@ Object.assign(aicBlocks,{
             "inputsInline": true,
             "tooltip": "",
             "helpUrl": "",
-            "colour": 160,
+            "colour": 120,
             "previousStatement": "msg_hold",
             "nextStatement": aicBlocks.statement
         },
@@ -1246,7 +1282,7 @@ Object.assign(aicBlocks,{
             "inputsInline": true,
             "tooltip": "",
             "helpUrl": "",
-            "colour": 160,
+            "colour": 120,
             "previousStatement": "msg_skip",
             "nextStatement": aicBlocks.statement
         },
@@ -1591,6 +1627,42 @@ Object.assign(aicBlocks,{
         "menu": [],
         "xmlText": function (inputs,next,isShadow,comment,attribute) {
             return aicFunctions.xmlText('trigger_bgm',inputs,next,isShadow,comment,attribute);
+        }
+    },
+    "play_snd": {
+        "type": "statement",
+        "json": {
+            "type": "play_snd",
+            "message0": "播放声效： %1",
+            "args0": [
+                Object.assign({},aicBlocks.SND_List,{
+                    "name": "snd"
+                })
+            ],
+            "inputsInline": true,
+            "tooltip": "",
+            "helpUrl": "",
+            "colour": 160,
+            "previousStatement": "play_snd",
+            "nextStatement": aicBlocks.statement
+        },
+        "generFunc": function(block) {
+            var snd = block.getFieldValue('snd');
+            snd = aicFunctions.pre('SND_List')(snd,block,'snd','play_snd');
+            var code = aicFunctions.defaultCode('play_snd',eval('['+aicBlocks['play_snd'].args.join(',')+']'),block);
+            return code;
+        },
+        "args": ["snd"],
+        "argsType": ["field"],
+        "argsGrammarName": ["SND_List"],
+        "omitted": [false],
+        "multi": [false],
+        "fieldDefault": function (keyOrIndex) {
+            return aicFunctions.fieldDefault('play_snd',keyOrIndex);
+        },
+        "menu": [],
+        "xmlText": function (inputs,next,isShadow,comment,attribute) {
+            return aicFunctions.xmlText('play_snd',inputs,next,isShadow,comment,attribute);
         }
     },
     "pr_outfit": {
@@ -2736,9 +2808,6 @@ var toolbox = (function(){
         // 每个键值对作为一页
         "未分类": [
             aicBlocks["prog"].xmlText(),
-            aicBlocks["msg_hide"].xmlText(),
-            aicBlocks["msg_hold"].xmlText(),
-            aicBlocks["msg_skip"].xmlText(),
             aicBlocks["wait"].xmlText(),
             aicBlocks["timeout"].xmlText(),
             aicBlocks["op_tl"].xmlText(),
@@ -2747,6 +2816,7 @@ var toolbox = (function(){
             aicBlocks["play_bgm"].xmlText(),
             aicBlocks["half_bgm"].xmlText(),
             aicBlocks["trigger_bgm"].xmlText(),
+            aicBlocks["play_snd"].xmlText(),
             aicBlocks["pr_outfit"].xmlText(),
             aicBlocks["ui_trigger"].xmlText()
         ],
@@ -2763,6 +2833,9 @@ var toolbox = (function(){
             aicBlocks["pic_"].xmlText()
         ],
         "对话类": [
+            aicBlocks["msg_hide"].xmlText(),
+            aicBlocks["msg_hold"].xmlText(),
+            aicBlocks["msg_skip"].xmlText(),
             aicBlocks["msg"].xmlText(),
             aicBlocks["msg_book"].xmlText(),
             aicBlocks["tx_board"].xmlText()
@@ -2922,6 +2995,8 @@ function compile() { // 编译json得到哈语言和对话txt
                 return 'HALF_BGM ' + (o.half ? 1 : 0);
             case 'trigger_bgm':
                 return (o.stop ? 'STOP' : 'START') + '_BGM ' + o.tick;
+            case 'play_snd':
+                return 'SND ' + o.snd;
             case 'pr_outfit':
                 return '#<%>\nPR_OUTFIT ' + (o.BABYDOLL ? 'BABYDOLL' : 'NORMAL');
             case 'ui_trigger':

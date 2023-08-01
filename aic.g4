@@ -9,7 +9,7 @@ statement
     | msg | msg_book | tx_board
     | msg_hide | msg_hold | msg_skip | timeout | op_tl | wait
     | tuto_msg | tuto_remove
-    | play_bgm | half_bgm | trigger_bgm
+    | play_bgm | half_bgm | trigger_bgm | play_snd
     | greeting
     | pr_outfit
     | uialert
@@ -126,6 +126,8 @@ play_bgm : '切换音乐：' 'BGM_' bgm=BGM_List '淡出帧数' fadeout=Int '淡
 half_bgm : '音乐音量是否减半：' half=Bool ;
 
 trigger_bgm : '暂停/继续音乐：' '是否暂停' stop=Bool '淡出/淡入帧数' tick=Int ;
+
+play_snd : '播放声效：' snd=SND_List ;
 
 pr_outfit : '换装：' '是否睡裙' BABYDOLL=Bool ;
 
@@ -285,6 +287,9 @@ Tuto_List
 BGM_List
     : '标题画面'|'风（BGS）'|'编织者之森'|'史莱姆教学'|'柯涅尔工房（昼）'|'柯涅尔工房（夜）'|'伊夏（昼）'|'伊夏（夜）'|'伊夏（战斗）'|'丽薇歌塔'|'提尔德'|'德尔菲尼'|'蝉鸣（BGS）'|'普莉姆拉（出场）'|'普莉姆拉（讲故事）'|'普莉姆拉（墓前）'|'普莉姆拉（教学）'|'过夜（ME）'|'烹饪教学'|'炼金手册'|'休息室（准备）'|'休息室（成功）'|'休息室（失败）'|'水下（BGS）'|'南丁格尔'|'土蛇战败'|'人偶护符'|'阿尔玛'|'奥斯托利亚'|'蛊惑之沼（关门）'|'爆破现场'|'圣光爆发'|'森之领主'|'要迟到了'
     /*BGM_List ['title','wind','forest','herghost','cornehl','cornehl_night','ixia','ixia_night','ixia_battle','popsup','tilde','town4','suzumusi','primula','tuuzyou','light','luminous_particle','inn','valentine','c_sign','tokimeki','yatto_deaeta','bukiyou_na_hutari','underwater','shopping','fatal_huon','degree45','sohunosyosai','hunter_minarai','yocho','madhatter','killing','battle_nusi','morinokioku']*/;
+
+SND_List
+    : 'absorb_guchu'|'cloth_off'|'cloth_off_0'|'cloth_off_1'|'door_storeportal_open'|'door_wood_s_open'|'dora_ring'|'flashback_noise'|'foot_leafground_ev2'|'foot_sand'|'get_item'|'gimmick_keyboard'|'ground_gogogo'|'insect_rape2'|'itembox_appear'|'nusi_inject'|'nusivo_grawl'|'orgasm'|'paper'|'ping'|'pr_down'|'pr_hit_wall'|'prko_s'|'puni'|'restroom_flush'|'restroom_pee'|'restroom_shower'|'small_hit'|'step_stair'|'tsukkomi';
 
 Engine_List
     : '老师教学'|'土蛇战'|'森主战'
