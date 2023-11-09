@@ -106,15 +106,15 @@ default: ["house_witchboard_00", 3]
 
 msg_hide : '隐藏所有对话框' ;
 /* msg_hide
-color: 160
+color: 120
 */
 msg_hold : '保持对话框（可配合SELECT）' ;
 /* msg_hold
-color: 160
+color: 120
 */
 msg_skip : '打断对话框（需放入延迟0执行）' ;
 /* msg_skip
-color: 160
+color: 120
 */
 
 wait : '等待' tick=Int '帧' ;
