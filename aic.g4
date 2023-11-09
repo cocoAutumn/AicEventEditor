@@ -105,8 +105,17 @@ default: ["house_witchboard_00", 3]
 */
 
 msg_hide : '隐藏所有对话框' ;
+/* msg_hide
+color: 160
+*/
 msg_hold : '保持对话框（可配合SELECT）' ;
+/* msg_hold
+color: 160
+*/
 msg_skip : '打断对话框（需放入延迟0执行）' ;
+/* msg_skip
+color: 160
+*/
 
 wait : '等待' tick=Int '帧' ;
 /* wait default: [60] */
@@ -503,6 +512,14 @@ function compile() { // 编译json得到哈语言和对话txt
     }
 }
 
+Blockly.bindEventWithChecks_(workspace.svgGroup_,"wheel",workspace,function(e){
+    e.preventDefault();
+    var hvScroll = e.shiftKey?'hScroll':'vScroll';
+    workspace.scrollbar[hvScroll].handlePosition_+=( ((e.deltaY||0)+(e.detail||0)) >0?20:-20);
+    workspace.scrollbar[hvScroll].onScroll_();
+    workspace.setScale(workspace.scale);
+});
+
 }).toString().slice(5,-1)
 this.js.toolbox=(()=>{ 
 
@@ -620,9 +637,23 @@ workspace.addChangeListener(omitedcheckUpdateFunction);
 
 
 }).toString().slice(5,-1)
-this.js.xxxxx=(()=>{ 
+this.js.BlocklyInject=(()=>{ 
 
 
+var workspace = Blockly.inject('blocklyDiv',{
+    media: './media/',
+    toolbox: toolbox,
+    zoom:{
+        controls: true,
+        wheel: false,//false
+        startScale: 1.0,
+        maxScale: 3,
+        minScale: 0.3,
+        scaleSpeed: 1.08
+    },
+    trashcan: false,
+});
+aicFunctions.workspace = function(){return workspace}
 
 
 }).toString().slice(5,-1)
