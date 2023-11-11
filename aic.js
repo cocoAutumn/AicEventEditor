@@ -2,9 +2,52 @@
 // 语句集合和表达式集合
 aicBlocks = {
     "statement": [
-        "talker","talker_replace","hkds","pic","pic_mp","pic_moveA","pic_hide","pic_f","pic_s","pic_","msg","msg_book","tx_board","msg_hide","msg_hold","msg_skip","timeout","op_tl","wait","tuto_msg","tuto_remove","play_bgm","half_bgm","trigger_bgm","play_snd","greeting","pr_outfit","uialert","ui_trigger","danger","gfc_set","engine","tpmap_house","tpmap_battle","tpmap_chest","tpmap_other","pe","if_s","select","choice","do_while","until_do","custom"
+        "talker",
+        "talker_replace",
+        "hkds",
+        "pic",
+        "pic_mp",
+        "pic_moveA",
+        "pic_hide",
+        "pic_f",
+        "pic_s",
+        "pic_",
+        "msg",
+        "msg_book",
+        "tx_board",
+        "msg_hide",
+        "msg_hold",
+        "msg_skip",
+        "timeout",
+        "op_tl",
+        "wait",
+        "tuto_msg",
+        "tuto_remove",
+        "play_bgm",
+        "half_bgm",
+        "trigger_bgm",
+        "play_snd",
+        "greeting",
+        "pr_outfit",
+        "uialert",
+        "ui_trigger",
+        "danger",
+        "gfc_set",
+        "engine",
+        "tpmap_house",
+        "tpmap_battle",
+        "tpmap_chest",
+        "tpmap_other",
+        "pe",
+        "if_s",
+        "select",
+        "choice",
+        "do_while",
+        "until_do",
+        "custom"
     ]
 }
+
 
 // 所有域的默认行为
 Object.assign(aicBlocks,{
@@ -542,6 +585,7 @@ Object.assign(aicBlocks,{
         "default": "BGM_LOWER"
     }
 });
+
 
 // 所有方块的实际内容
 Object.assign(aicBlocks,{
@@ -2506,6 +2550,8 @@ Object.assign(aicBlocks,{
     }
 });
 
+
+
 //生成代码中,当一个不允许省略的值或块省略时,会抛出这个错误
 function OmitedError(block, var_, rule, fileName, lineNumber) {
     var message = 'no omitted '+var_+' at '+rule;
@@ -2544,7 +2590,9 @@ MultiStatementError.prototype = Object.create(Error.prototype);
 MultiStatementError.prototype.constructor = MultiStatementError;
 //处理此错误的omitedcheckUpdateFunction定义在下面
 
+
 aicFunctions={}
+
 
 aicFunctions.Int_pre = function(intstr) {
     return parseInt(intstr);
@@ -2561,6 +2609,8 @@ aicFunctions.pre = function(LexerId) {
     }
     return function(obj,block,fieldName,blockType){return obj}
 }
+
+
 
 // aicFunctions.fieldDefault
 // 根据输入是整数字符串或null
@@ -2593,6 +2643,8 @@ aicFunctions.fieldDefault = function (ruleName,keyOrIndex) {
     if (iskey || isindex) return undefined;
     return allDefault;
 }
+
+
 
 // aicFunctions.defaultCode_TEXT
 aicFunctions.defaultCode_TEXT = function (ruleName,args,block) {
@@ -2695,6 +2747,8 @@ aicFunctions.defaultCode_JSON = function (ruleName,args,block) {
 // aicFunctions.defaultCode
 aicFunctions.defaultCode=aicFunctions.defaultCode_JSON
 
+
+
 // aicFunctions.xmlText
 // 构造这个方法是为了能够不借助workspace,从语法树直接构造图块结构
 // inputs的第i个元素是第i个args的xmlText,null或undefined表示空
@@ -2754,6 +2808,8 @@ aicFunctions.xmlText = function (ruleName,inputs,next,isShadow,comment,attribute
     return xmlText.join('');
 }
 
+
+
 // aicFunctions.blocksIniter
 // 把各方块的信息注册到Blockly中
 aicFunctions.blocksIniter = function(){
@@ -2795,7 +2851,10 @@ aicFunctions.blocksIniter = function(){
     }
 }
 
+
 aicFunctions.blocksIniter();
+
+ 
 
 var toolbox = (function(){
 
@@ -2884,12 +2943,14 @@ var toolbox = (function(){
     return toolboxXml;
 })();
 
+
+
 var workspace = Blockly.inject('blocklyDiv',{
     media: './media/',
     toolbox: toolbox,
     zoom:{
         controls: true,
-        wheel: true,//false
+        wheel: false,//false
         startScale: 1.0,
         maxScale: 3,
         minScale: 0.3,
@@ -2898,11 +2959,13 @@ var workspace = Blockly.inject('blocklyDiv',{
     trashcan: false,
 });
 aicFunctions.workspace = function(){return workspace}
+ 
 
 function omitedcheckUpdateFunction(event) {
     // console.log(event);
     var codeAreaElement = document.getElementById('codeArea');
-    var codeAreaFunc = function(err,data){document.getElementById('codeArea').innerHTML=err?String(err):data};
+    var preRender=function(data){return '[\n'+JSON.parse(data).map(v=>JSON.stringify(v)).join(',\n')+'\n]'}
+    var codeAreaFunc = function(err,data){document.getElementById('codeArea').innerHTML=err?String(err):preRender(data)};
     try {
         var code = Blockly.JavaScript.workspaceToCode(workspace);
         codeAreaFunc(null,code);
@@ -2919,9 +2982,11 @@ function omitedcheckUpdateFunction(event) {
 
 workspace.addChangeListener(omitedcheckUpdateFunction);
 
+
+
 //自动禁用任何未连接到根块的块
 workspace.addChangeListener(Blockly.Events.disableOrphans);
-
+ 
 // debugFunctions
 function copyjson() { // 复制当前json到剪贴板
     var a = document.getElementById('codeArea');
@@ -3092,3 +3157,11 @@ function compile() { // 编译json得到哈语言和对话txt
         a.blur();
     }
 }
+
+Blockly.bindEventWithChecks_(workspace.svgGroup_,"wheel",workspace,function(e){
+    e.preventDefault();
+    var hvScroll = e.shiftKey?'hScroll':'vScroll';
+    workspace.scrollbar[hvScroll].handlePosition_+=( ((e.deltaY||0)+(e.detail||0)) >0?20:-20);
+    workspace.scrollbar[hvScroll].onScroll_();
+    workspace.setScale(workspace.scale);
+});

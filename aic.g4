@@ -105,8 +105,17 @@ default: ["house_witchboard_00", 3]
 */
 
 msg_hide : '隐藏所有对话框' ;
+/* msg_hide
+color: 120
+*/
 msg_hold : '保持对话框（可配合SELECT）' ;
+/* msg_hold
+color: 120
+*/
 msg_skip : '打断对话框（需放入延迟0执行）' ;
+/* msg_skip
+color: 120
+*/
 
 wait : '等待' tick=Int '帧' ;
 /* wait default: [60] */
@@ -322,4 +331,331 @@ this.evisitor.picColor = 190;
 this.evisitor.msgColor = 120;
 this.evisitor.otherColor = 30;
 this.evisitor.flowColor = 220;
+*/
+
+
+/* Call_AfterAllContent
+
+this.js._text.map(key=>{this.js[key]=this.js[key].replace(/Aic/g,'aic')})
+
+this.html._name = 'no-using.html'
+this.js._name = grammarName.replace(/Aic/g,'aic') + '.js'
+this.js.debugFunctions=(()=>{ 
+// debugFunctions
+function copyjson() { // 复制当前json到剪贴板
+    var a = document.getElementById('codeArea');
+    a.focus();
+    a.setSelectionRange(0, a.value.length);
+    try {
+        document.execCommand('copy');
+        alert('当前json已复制到剪贴板，可粘贴到记事本以供下次还原为积木。');
+    } catch (e) {
+        alert('复制失败！请手动从页面下方的文本框全选复制。');
+    }
+    a.rows = a.value.split('\n').length;
+    a.blur();
+}
+
+function rebuild() { // 弹窗粘贴json，还原到积木
+    var s = prompt('请粘贴要用于重建积木的json代码:');
+    try {
+        s = s.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+        aicFunctions.parse({ "type": "prog", "statement_0": JSON.parse(s) });
+    } catch (e) {
+        alert('重建失败！请检查所粘贴json是否正确。');
+    }
+}
+
+function compile() { // 编译json得到哈语言和对话txt
+    let id = prompt('请输入事件id:', 's10_4c_srng');
+    if (typeof id !== 'string' || id.length <= 0) return;
+    let loop = 0, ch = 0, book = 0; // LABEL和BOOK计数器
+    let txt = '', msg = 0; // 对话文本及其计数器
+    var f = function (o) {
+        switch (o.type) {
+            case 'talker':
+                return `TALKER ${o.who} ${o.hori + o.vert}`;
+            case 'talker_replace':
+                return `TALKER_REPLACE ${o.who} ` + (
+                    o.voice === "''" ? "''" : 'talk_' + o.voice
+                );
+            case 'hkds':
+                return `HKDS ${o.who} ${o.hori + o.vert} ${o.follow} ${o.border}`;
+            case 'pic':
+                return `PIC ${o.who} ${o.url}`;
+            case 'pic_mp':
+                return `PIC_MP ${o.who} ${o.emo}`;
+            case 'pic_moveA':
+                return `PIC_MOVEA ${o.who} ${o.time} ${o.action}`;
+            case 'pic_hide':
+                return `PIC_HIDE ${o.who}`;
+            case 'pic_f':
+            case 'pic_s':
+            case 'pic_':
+                return `PIC_${o.instruction} ${o.args}`;
+            case 'msg_hide':
+            case 'msg_hold':
+            case 'msg_skip':
+                return o.type.toUpperCase();
+            case 'wait':
+                return 'WAIT ' + o.tick;
+            case 'timeout':
+                const tl = o.tick > 0 ? 'TL ' + o.tick + ' ' : 'MTL ';
+                return o.instructions.map(x => tl + f(x)).join('\n');
+            case 'op_tl':
+                return o.operation;
+            case 'tuto_msg':
+                return `TUTO_MSG Tuto_${o.tuto}\nTUTO_CAP C ${o.pos}`;
+            case 'tuto_remove':
+                return 'TUTO_REMOVE' + (o.all ? '_ALL' : '');
+            case 'play_bgm':
+                return `LOAD_BGM BGM_${o.bgm}\nREPLACE_BGM ${o.fadeout} ${o.fadein}`;
+            case 'half_bgm':
+                return 'HALF_BGM ' + (o.half ? 1 : 0);
+            case 'trigger_bgm':
+                return (o.stop ? 'STOP' : 'START') + '_BGM ' + o.tick;
+            case 'play_snd':
+                return 'SND ' + o.snd;
+            case 'pr_outfit':
+                return '#<%>\nPR_OUTFIT ' + (o.BABYDOLL ? 'BABYDOLL' : 'NORMAL');
+            case 'ui_trigger':
+                return 'UI_' + (o.DISABLE ? 'DIS' : 'EN') + 'ABLE';
+            case 'greeting':
+                return `GREETING ${o.dir} ${o.dist}`;
+            case 'uialert':
+                return "UIALERT '" + o.text + "'";
+            case 'danger':
+                return `DANGER ${o.danger} ${o.immediate}`;
+            case 'gfc_set':
+                return 'GFC_SET' + (o.max ? '_MX ' : ' ') + o.id + ' ' + o.value;
+            case 'engine':
+                return `ENGINE ${o.who} ${o.id}`;
+            case 'tpmap_house':
+            case 'tpmap_battle':
+            case 'tpmap_chest':
+            case 'tpmap_other':
+                return `INIT_MAP_MATERIAL ${o.mapid} 1\n` +
+                    'WAIT_FN MAP_TRANSFER\n' +
+                    `NEL_EXECUTE_FAST_TRAVEL ${o.mapid} ${o.x} ${o.y}`;
+            case 'pe':
+                return `PE ${o.effect} ${o.tick}`;
+            case 'if_s':
+                return `IF '${o.cond}' {\n` +
+                    o['then_'].map(x => f(x)).join('\n') +
+                    '\n} ELSE {\n' +
+                    o['else_'].map(x => f(x)).join('\n') +
+                    '\n}';
+            case 'custom':
+                return o.instruction;
+            case 'do_while':
+                var l = ++loop;
+                return `LABEL loop${l}\n` +
+                    o.instructions.map(x => f(x)).join('\n') +
+                    `\nIF '${o.cond}' GOTO loop${l}`;
+            case 'until_do':
+                var l = ++loop;
+                return `LABEL loop${l}\nIF '${o.cond}' GOTO end${l}\n` +
+                    o.instructions.map(x => f(x)).join('\n') +
+                    `\nGOTO loop${l}\nLABEL end${l}`;
+            case 'select':
+                var s = 'SELECT ' + o.choices.length;
+                var c = ++ch;
+                for (let i = 0; i < o.choices.length; ++i)
+                    s += `\n'${o.choices[i].text}' ch${c}_${i + 1}`;
+                for (let i = 0; i < o.choices.length; ++i)
+                    s += `\nLABEL ch${c}_${i + 1}\n` +
+                        o.choices[i].instructions.map(x => f(x)).join('\n') +
+                        `\nGOTO ch${c}_end`;
+                return s + `\nLABEL ch${c}_end`;
+            case 'msg_book':
+                var suffix = book < 10 ? '0' + book : book;
+                ++book;
+                txt += `*${id} b${suffix}\n${o.text}\n`;
+                return 'MSG BOOK@' + o.hori + o.vert + '_b' + suffix;
+            case 'tx_board':
+                return 'TX_BOARD _eventboard_' + o.id + ' ' + o.style;
+            case 'msg':
+                ++msg;
+                var suffix = msg < 10 ? '0' + msg : msg;
+                txt += `*${id} ${o.who}_${suffix}\n${o.style}${o.text}\n`;
+                return 'MSG ' + o.who + '_' + suffix;
+        }
+        return '';
+    }
+    let s = JSON.parse(document.getElementById('codeArea').value);
+    var blob = new Blob([s.map(x => f(x)).join('\n')], { type: 'text/plain;charset=utf-8' });
+    if (window.navigator.msSaveOrOpenBlob)
+        window.navigator.msSaveBlob(blob, id + '.cmd.txt'); // 文件名
+    else {
+        var href = window.URL.createObjectURL(blob);
+        var elem = window.document.createElement('a');
+        elem.href = href;
+        elem.download = id + '.cmd.txt'; // 文件名
+        document.body.appendChild(elem);
+        elem.click();
+        document.body.removeChild(elem);
+        window.URL.revokeObjectURL(href);
+    }
+    if (txt.length > 0) {
+        var a = document.getElementById('codeArea');
+        a.innerHTML = txt;
+        a.focus();
+        a.setSelectionRange(0, a.value.length);
+        try {
+            document.execCommand('copy');
+            alert('对话内容已复制到剪贴板，请自行保存到记事本等处。');
+        } catch (e) {
+            alert('复制对话内容失败！请手动从页面下方的文本框全选复制。');
+        }
+        a.rows = a.value.split('\n').length;
+        a.blur();
+    }
+}
+
+Blockly.bindEventWithChecks_(workspace.svgGroup_,"wheel",workspace,function(e){
+    e.preventDefault();
+    var hvScroll = e.shiftKey?'hScroll':'vScroll';
+    workspace.scrollbar[hvScroll].handlePosition_+=( ((e.deltaY||0)+(e.detail||0)) >0?20:-20);
+    workspace.scrollbar[hvScroll].onScroll_();
+    workspace.setScale(workspace.scale);
+});
+
+}).toString().slice(5,-1)
+this.js.toolbox=(()=>{ 
+
+var toolbox = (function(){
+
+    var toolboxXml=document.createElement('xml')
+
+    // 调整这个obj来更改侧边栏和其中的方块
+    // 可以直接填 '<block type="xxx">...</block>'
+    // 标签 '<label text="标签文本"></label>'
+    var toolboxObj = {
+        // 每个键值对作为一页
+        "未分类": [
+            aicBlocks["prog"].xmlText(),
+            aicBlocks["wait"].xmlText(),
+            aicBlocks["timeout"].xmlText(),
+            aicBlocks["op_tl"].xmlText(),
+            aicBlocks["tuto_msg"].xmlText(),
+            aicBlocks["tuto_remove"].xmlText(),
+            aicBlocks["play_bgm"].xmlText(),
+            aicBlocks["half_bgm"].xmlText(),
+            aicBlocks["trigger_bgm"].xmlText(),
+            aicBlocks["play_snd"].xmlText(),
+            aicBlocks["pr_outfit"].xmlText(),
+            aicBlocks["ui_trigger"].xmlText()
+        ],
+        "图片类": [
+            aicBlocks["talker"].xmlText(),
+            aicBlocks["talker_replace"].xmlText(),
+            aicBlocks["hkds"].xmlText(),
+            aicBlocks["pic"].xmlText(),
+            aicBlocks["pic_mp"].xmlText(),
+            aicBlocks["pic_moveA"].xmlText(),
+            aicBlocks["pic_hide"].xmlText(),
+            aicBlocks["pic_f"].xmlText(),
+            aicBlocks["pic_s"].xmlText(),
+            aicBlocks["pic_"].xmlText()
+        ],
+        "对话类": [
+            aicBlocks["msg_hide"].xmlText(),
+            aicBlocks["msg_hold"].xmlText(),
+            aicBlocks["msg_skip"].xmlText(),
+            aicBlocks["msg"].xmlText(),
+            aicBlocks["msg_book"].xmlText(),
+            aicBlocks["tx_board"].xmlText()
+        ],
+        "其他类": [
+            aicBlocks["greeting"].xmlText(),
+            aicBlocks["uialert"].xmlText(),
+            aicBlocks["danger"].xmlText(),
+            aicBlocks["gfc_set"].xmlText(),
+            aicBlocks["engine"].xmlText(),
+            aicBlocks["tpmap_house"].xmlText(),
+            aicBlocks["tpmap_battle"].xmlText(),
+            aicBlocks["tpmap_chest"].xmlText(),
+            aicBlocks["tpmap_other"].xmlText(),
+            aicBlocks["pe"].xmlText()
+        ],
+        "流程控制": [
+            aicBlocks["custom"].xmlText(),
+            aicBlocks["if_s"].xmlText(),
+            aicBlocks["select"].xmlText(),
+            aicBlocks["do_while"].xmlText(),
+            aicBlocks["until_do"].xmlText()
+        ]
+    }
+
+    var getCategory = function(toolboxXml,name,custom){
+        var node = document.createElement('category');
+        node.setAttribute('name',name);
+        if(custom)node.setAttribute('custom',custom);
+        toolboxXml.appendChild(node);
+        return node;
+    }
+
+    var toolboxGap = '<sep gap="3"></sep>'
+
+    for (var name in toolboxObj){
+        var custom = null;
+        if(name=='xxxxxx')custom='xxxxxx';
+        if(name=='zzzzzz')custom='zzzzzz';
+        getCategory(toolboxXml,name,custom).innerHTML = toolboxObj[name].join(toolboxGap);
+        var node = document.createElement('sep');
+        node.setAttribute('gap',0*3);
+        toolboxXml.appendChild(node);
+    }
+
+    return toolboxXml;
+})();
+
+
+}).toString().slice(5,-1)
+this.js.checkUpdateFunction=(()=>{ 
+
+function omitedcheckUpdateFunction(event) {
+    // console.log(event);
+    var codeAreaElement = document.getElementById('codeArea');
+    var preRender=function(data){return '[\n'+JSON.parse(data).map(v=>JSON.stringify(v)).join(',\n')+'\n]'}
+    var codeAreaFunc = function(err,data){document.getElementById('codeArea').innerHTML=err?String(err):preRender(data)};
+    try {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        codeAreaFunc(null,code);
+    } catch (error) {
+        codeAreaFunc(error,null);
+        if (error instanceof OmitedError ||error instanceof MultiStatementError){
+            var blockName = error.blockName;
+            var varName = error.varName;
+            var block = error.block;
+        }
+        console.log(error);
+    }
+}
+
+workspace.addChangeListener(omitedcheckUpdateFunction);
+
+
+}).toString().slice(5,-1)
+this.js.BlocklyInject=(()=>{ 
+
+
+var workspace = Blockly.inject('blocklyDiv',{
+    media: './media/',
+    toolbox: toolbox,
+    zoom:{
+        controls: true,
+        wheel: false,//false
+        startScale: 1.0,
+        maxScale: 3,
+        minScale: 0.3,
+        scaleSpeed: 1.08
+    },
+    trashcan: false,
+});
+aicFunctions.workspace = function(){return workspace}
+
+
+}).toString().slice(5,-1)
+
 */
