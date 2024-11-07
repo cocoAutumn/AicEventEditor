@@ -20,7 +20,7 @@ Alice in Cradle 的 StreamingAssets 文件夹中有一个 localization 子文件
 1. __AdditionalFonts: 中文和韩文的字体文件，以及标点符号间距的配置文件。
 2. _: 日本语原文，其中 __tx_whole.txt 无视玩家的语言设置被强制使用。换句话说，其他子文件夹下的 XX_tx_whole.txt 修改无效！（XX 为语言代码，下同）
 3. en: 英语，由游戏作者 [Hinayua](http://fantia.jp/fanclubs/24531/posts) 自行翻译。
-4. ko-kr: 朝鲜（韩国）语。
+4. ko-kr: 韩语（朝鲜语）。
 5. th: 泰国语，已停止维护，未翻译的部分用英语。
 6. zh-tc: 汉语繁体中文。
 7. zh-cn: 汉语简体中文，由汉化组 b站 [AliceInCradle官方](https://space.bilibili.com/3493078251866300/dynamic)翻译。
@@ -253,4 +253,4 @@ cry: 错落有致地上下弹跳（循环），游戏中只有奥斯托利亚用
 ## 实战
 请打开所属语言的 ev_s10.txt 文件，定位到 *s10_4c_srng x_00 一行，在其下尽可能尝试上述所有语法，并在游戏中（魔女杂货店坡顶的霰弹教学 NPC 处）查看效果。
 
-本文档最后更新于 2024 年 6 月 25 日。
+本文档最后更新于 2024 年 11 月 7 日。
